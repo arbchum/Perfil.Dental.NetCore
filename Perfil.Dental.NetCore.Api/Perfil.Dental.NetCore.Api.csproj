@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Perfil.Dental.NetCore.Application\Perfil.Dental.NetCore.Application.csproj" />
+    <ProjectReference Include="..\Perfil.Dental.Netcore.Domain\Perfil.Dental.Netcore.Domain.csproj" />
+    <ProjectReference Include="..\Perfil.Dental.NetCore.Infrastructure\Perfil.Dental.NetCore.Infrastructure.csproj" />
+  </ItemGroup>
+
+
+</Project>
