@@ -8,5 +8,6 @@ namespace Perfil.Dental.NetCore.Application.Interfaces.Repositories
     {
         Task<IEnumerable<AtencionDto>> GetSearchAsync();
         Task<bool> CreateAync(Atencion request);
+        Task<IEnumerable<AtencionHistorico>> GetHistoricalAsync(int nIdCliente);
     }
 }

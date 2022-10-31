@@ -14,7 +14,8 @@ namespace Perfil.Dental.Netcore.Domain.Entities
         public string sCelular { get; set; }
         public string sTelefono { get; set; }
         public string sCorreo { get; set; }
-        public DateTime? dFechaReg { get; set; }
+        public int nIdDistrito { get; set; }
+        public string sDireccion { get; set; }
     }
     public class ClienteDto
     {
@@ -25,5 +26,6 @@ namespace Perfil.Dental.Netcore.Domain.Entities
         public string sEdad { get; set; }
         public string sCelular { get; set; }
         public string sActivo { get; set; }
+        public string sFechaReg { get; set; }
     }
 }

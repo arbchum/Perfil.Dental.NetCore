@@ -9,5 +9,6 @@ namespace Perfil.Dental.NetCore.Application.Interfaces.Services
         Task<IEnumerable<ClienteDto>> GetSearchAsync();
         Task<bool> CreateOrUpdateAync(Cliente request);
         Task<Cliente> GetOneAsync(int nIdCliente);
+        Task<IEnumerable<Provincia>> GetUbigeoAll();
     }
 }

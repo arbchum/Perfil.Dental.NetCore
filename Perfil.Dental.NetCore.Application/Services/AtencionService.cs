@@ -24,5 +24,10 @@ namespace Perfil.Dental.NetCore.Application.Services
             var response = await _unitOfWork.Atencion.CreateAync(request);
             return response;
         }
+        public async Task<IEnumerable<AtencionHistorico>> GetHistoricalAsync(int nIdCliente)
+        {
+            var response = await _unitOfWork.Atencion.GetHistoricalAsync(nIdCliente);
+            return response;
+        }
     }
 }

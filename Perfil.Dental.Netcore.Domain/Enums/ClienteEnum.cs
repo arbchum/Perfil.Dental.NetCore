@@ -5,6 +5,7 @@
         None,
         Search, 
         InsertOrUpdate,
-        GetOne
+        GetOne,
+        GetUbigeoAll
     }
 }

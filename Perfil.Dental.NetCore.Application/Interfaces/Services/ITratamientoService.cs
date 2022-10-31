@@ -7,5 +7,6 @@ namespace Perfil.Dental.NetCore.Application.Interfaces.Services
     public interface ITratamientoService
     {
         Task<IEnumerable<Tratamiento>> GetSearchAsync();
+        Task<bool> CreateOrUpdateAync(Tratamiento request);
     }
 }

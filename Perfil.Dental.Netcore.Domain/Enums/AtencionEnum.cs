@@ -5,6 +5,8 @@
         None,
         Search,
         Create,
-        CreateDetail
+        CreateDetail,
+        GetOne,
+        GetHistorical
     }
 }

@@ -23,5 +23,12 @@ namespace Perfil.Dental.NetCore.Api.Controllers
             var response = await _tratamientoService.GetSearchAsync();
             return response;
         }
+
+        [HttpPost("[action]")]
+        public async Task<bool> CreateOrUpdate([FromBody] Tratamiento request)
+        {
+            var response = await _tratamientoService.CreateOrUpdateAync(request);
+            return response;
+        }
     }
 }

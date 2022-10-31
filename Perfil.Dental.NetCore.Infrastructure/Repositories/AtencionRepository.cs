@@ -38,7 +38,7 @@ namespace Perfil.Dental.NetCore.Infrastructure.Repositories
 
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("nIdCliente", request.nIdCliente, DbType.Int32, ParameterDirection.Input);
-                parameters.Add("sObservacion", request.sObservacion, DbType.String, ParameterDirection.Input);
+                parameters.Add("sNota", request.sNota, DbType.String, ParameterDirection.Input);
                 parameters.Add("nMonto", request.nMonto, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("nIdAtencion", request.nIdAtencion, DbType.Int32, ParameterDirection.Output);
                 var sql1 = $"{Procedure};{(int)AtencionEnum.Create}";
@@ -66,6 +66,16 @@ namespace Perfil.Dental.NetCore.Infrastructure.Repositories
             });
             _executers.CloseConnection();
             return result > 0;
+        }
+
+        public async Task<IEnumerable<AtencionHistorico>> GetHistoricalAsync(int nIdCliente)
+        {
+            var sql = $"{Procedure};{(int)AtencionEnum.GetHistorical}";
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("nIdCliente", nIdCliente, DbType.Int32, ParameterDirection.Input);
+            var result = await _executers.ExecuteCommand(
+            async conn => await conn.QueryAsync<AtencionHistorico>(sql, parameters, commandType: CommandType.StoredProcedure));
+            return result;
         }
     }
 }

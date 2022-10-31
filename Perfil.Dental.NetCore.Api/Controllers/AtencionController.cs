@@ -29,5 +29,12 @@ namespace Perfil.Dental.NetCore.Api.Controllers
             var response = await _atencionService.CreateAync(request);
             return response;
         }
+
+        [HttpGet("[action]/{nIdCliente}")]
+        public async Task<ActionResult<IEnumerable<AtencionHistorico>>> GetHistorical(int nIdCliente)
+        {
+            var response = await _atencionService.GetHistoricalAsync(nIdCliente);
+            return Ok(response);
+        }
     }
 }

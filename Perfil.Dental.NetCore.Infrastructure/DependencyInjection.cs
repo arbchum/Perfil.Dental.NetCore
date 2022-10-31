@@ -14,7 +14,7 @@ namespace Perfil.Dental.NetCore.Infrastructure
             services.AddTransient<IExecuters>((provider) => new Executers(configuration.GetConnectionString("Default")));
             services.AddTransient<IClienteRepository, ClienteRepository>();
             services.AddTransient<ITratamientoRepository, TratamientoRepository>(); 
-                services.AddTransient<IAtencionRepository, AtencionRepository>();
+            services.AddTransient<IAtencionRepository, AtencionRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             return services;
         }

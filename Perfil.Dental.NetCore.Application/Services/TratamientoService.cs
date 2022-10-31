@@ -19,5 +19,10 @@ namespace Perfil.Dental.NetCore.Application.Services
             var response = await _unitOfWork.Tratamiento.GetSearchAsync();
             return response;
         }
+        public async Task<bool> CreateOrUpdateAync(Tratamiento request)
+        {
+            var response = await _unitOfWork.Tratamiento.CreateOrUpdateAync(request);
+            return response;
+        }
     }
 }

@@ -3,6 +3,7 @@
     public enum TratamientoEnum
     {
         None,
-        Search
+        Search,
+        InsertOrUpdate
     }
 }

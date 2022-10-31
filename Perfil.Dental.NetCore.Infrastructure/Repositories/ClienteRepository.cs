@@ -39,6 +39,8 @@ namespace Perfil.Dental.NetCore.Infrastructure.Repositories
             parameters.Add("sCelular", request.sCelular, DbType.String, ParameterDirection.Input);
             parameters.Add("sTelefono", request.sTelefono, DbType.String, ParameterDirection.Input);
             parameters.Add("sCorreo", request.sCorreo, DbType.String, ParameterDirection.Input);
+            parameters.Add("nIdDistrito", request.nIdDistrito, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("sDireccion", request.sDireccion, DbType.String, ParameterDirection.Input);
             var result = await _executers.ExecuteCommand(
             async conn => await conn.ExecuteAsync(sql, parameters, commandType: CommandType.StoredProcedure));
             return result > 0;
@@ -50,6 +52,15 @@ namespace Perfil.Dental.NetCore.Infrastructure.Repositories
             parameters.Add("nIdCliente", nIdCliente, DbType.Int32, ParameterDirection.Input);
             var result = await _executers.ExecuteCommand(
             async conn => await conn.QuerySingleAsync<Cliente>(sql, parameters, commandType: CommandType.StoredProcedure));
+            return result;
+        }
+
+        public async Task<IEnumerable<UbigeoDto>> GetUbigeoAll()
+        {
+            var sql = $"{Procedure};{(int)ClienteEnum.GetUbigeoAll}";
+            var parameters = new DynamicParameters();
+            var result = await _executers.ExecuteCommand(
+            async conn => await conn.QueryAsync<UbigeoDto>(sql, parameters, commandType: CommandType.StoredProcedure));
             return result;
         }
     }
