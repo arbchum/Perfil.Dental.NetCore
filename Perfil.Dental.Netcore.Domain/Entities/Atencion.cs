@@ -7,7 +7,7 @@ namespace Perfil.Dental.Netcore.Domain.Entities
         public int nIdAtencion { get; set; }
         public string sNota { get; set; }
         public int nIdCliente { get; set; }
-        public decimal nMonto { get; set; }
+        public double nMonto { get; set; }
         public IEnumerable<DetAtencion> DetAtencion { get; set; }
     }
     public class DetAtencion
@@ -15,7 +15,7 @@ namespace Perfil.Dental.Netcore.Domain.Entities
         public int nIdAtencion { get; set; }
         public int nIdTratamiento { get; set; }
         public int nCantidad { get; set; }
-        public string nPrecio { get; set; }
+        public double nPrecio { get; set; }
     }
 
     public class AtencionDto

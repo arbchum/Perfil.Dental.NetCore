@@ -31,7 +31,7 @@ namespace Perfil.Dental.NetCore.Infrastructure.Repositories
         public async Task<bool> CreateAync(Atencion request)
         {
             int result = 0;
-            request.nMonto = request.DetAtencion.Select(item => item.nCantidad * Convert.ToDecimal(item.nPrecio)).Sum();
+            request.nMonto = request.DetAtencion.Select(item => item.nCantidad * item.nPrecio).Sum();
             await _executers.ExecuteCommand(async conn =>
             {
                 using var transaction = conn.BeginTransaction();
@@ -39,7 +39,7 @@ namespace Perfil.Dental.NetCore.Infrastructure.Repositories
                 DynamicParameters parameters = new DynamicParameters();
                 parameters.Add("nIdCliente", request.nIdCliente, DbType.Int32, ParameterDirection.Input);
                 parameters.Add("sNota", request.sNota, DbType.String, ParameterDirection.Input);
-                parameters.Add("nMonto", request.nMonto, DbType.Int32, ParameterDirection.Input);
+                parameters.Add("nMonto", request.nMonto, DbType.Double, ParameterDirection.Input);
                 parameters.Add("nIdAtencion", request.nIdAtencion, DbType.Int32, ParameterDirection.Output);
                 var sql1 = $"{Procedure};{(int)AtencionEnum.Create}";
                 result = await conn.ExecuteAsync(sql1, parameters, commandType: CommandType.StoredProcedure, transaction: transaction);
@@ -57,7 +57,7 @@ namespace Perfil.Dental.NetCore.Infrastructure.Repositories
                         parameterTratamiento.Add("nIdAtencion", request.nIdAtencion, DbType.Int32, ParameterDirection.Input);
                         parameterTratamiento.Add("nIdTratamiento", item.nIdTratamiento, DbType.Int32, ParameterDirection.Input);
                         parameterTratamiento.Add("nCantidad", item.nCantidad, DbType.Int32, ParameterDirection.Input);
-                        parameterTratamiento.Add("nPrecio", Convert.ToDecimal(item.nPrecio), DbType.Decimal, ParameterDirection.Input);
+                        parameterTratamiento.Add("nPrecio", item.nPrecio, DbType.Double, ParameterDirection.Input);
                         var sql2 = $"{Procedure};{(int)AtencionEnum.CreateDetail}";
                         await conn.ExecuteAsync(sql2, parameterTratamiento, commandType: CommandType.StoredProcedure, transaction: transaction);
                     }

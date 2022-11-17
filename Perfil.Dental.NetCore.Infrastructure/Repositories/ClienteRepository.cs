@@ -3,6 +3,7 @@ using Perfil.Dental.Netcore.Domain.Entities;
 using Perfil.Dental.Netcore.Domain.Enums;
 using Perfil.Dental.NetCore.Application.Interfaces.Repositories;
 using Perfil.Dental.NetCore.Infrastructure.ExecuteCommands;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
@@ -41,6 +42,7 @@ namespace Perfil.Dental.NetCore.Infrastructure.Repositories
             parameters.Add("sCorreo", request.sCorreo, DbType.String, ParameterDirection.Input);
             parameters.Add("nIdDistrito", request.nIdDistrito, DbType.Int32, ParameterDirection.Input);
             parameters.Add("sDireccion", request.sDireccion, DbType.String, ParameterDirection.Input);
+            parameters.Add("bMayor", Convert.ToBoolean(request.bMayor), DbType.Boolean, ParameterDirection.Input);
             var result = await _executers.ExecuteCommand(
             async conn => await conn.ExecuteAsync(sql, parameters, commandType: CommandType.StoredProcedure));
             return result > 0;

@@ -16,6 +16,7 @@ namespace Perfil.Dental.Netcore.Domain.Entities
         public string sCorreo { get; set; }
         public int nIdDistrito { get; set; }
         public string sDireccion { get; set; }
+        public int bMayor { get; set; }
     }
     public class ClienteDto
     {
