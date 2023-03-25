@@ -11,6 +11,7 @@ namespace Perfil.Dental.NetCore.Application
             services.AddScoped<IClienteService, ClienteService>();
             services.AddScoped<ITratamientoService, TratamientoService>();
             services.AddScoped<IAtencionService, AtencionService>();
+            services.AddScoped<IOrtodonciaService, OrtodonciaService>();
             return services;
         }
     }

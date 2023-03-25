@@ -5,5 +5,6 @@
         IClienteRepository Cliente { get; }
         ITratamientoRepository Tratamiento { get; }
         IAtencionRepository Atencion { get; }
+        IOrtodonciaRepository Ortodoncia { get; }
     }
 }

@@ -15,6 +15,7 @@ namespace Perfil.Dental.NetCore.Infrastructure
             services.AddTransient<IClienteRepository, ClienteRepository>();
             services.AddTransient<ITratamientoRepository, TratamientoRepository>(); 
             services.AddTransient<IAtencionRepository, AtencionRepository>();
+            services.AddTransient<IOrtodonciaRepository, OrtodonciaRepository>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             return services;
         }

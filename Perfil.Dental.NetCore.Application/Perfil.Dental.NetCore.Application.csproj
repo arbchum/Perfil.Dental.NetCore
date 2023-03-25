@@ -12,4 +12,9 @@
     <ProjectReference Include="..\Perfil.Dental.Netcore.Domain\Perfil.Dental.Netcore.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contracts\Requests\" />
+    <Folder Include="Contracts\Queries\" />
+  </ItemGroup>
+
 </Project>
