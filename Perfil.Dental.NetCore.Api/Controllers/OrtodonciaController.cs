@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Perfil.Dental.Netcore.Domain.Entities;
+using Perfil.Dental.NetCore.Application.Contracts.Queries;
 using Perfil.Dental.NetCore.Application.Contracts.Responses;
 using Perfil.Dental.NetCore.Application.Interfaces.Services;
 using System.Collections.Generic;
@@ -19,10 +19,21 @@ namespace Perfil.Dental.NetCore.Api.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult<ApiResponse<IEnumerable<OrtodonciaDto>>>> GetSearch()
+        public async Task<ActionResult<ApiResponse<IEnumerable<OrtodonciaDataResponse>>>> GetSearch()
         {
             var response = await _ortodonciaService.GetSearchAsync();
             if(!response.Success)
+            {
+                return BadRequest(response.Errors);
+            }
+            return response;
+        }
+
+        [HttpGet("[action]/{nIdPaciente}")]
+        public async Task<ActionResult<ApiResponse<OrtodonciaGetResponse>>> GetOne(int nIdPaciente)
+        {
+            var response = await _ortodonciaService.GetOneAsync(nIdPaciente);
+            if (!response.Success)
             {
                 return BadRequest(response.Errors);
             }
@@ -41,9 +52,9 @@ namespace Perfil.Dental.NetCore.Api.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<ActionResult<ApiResponse<IEnumerable<DetOrtodonciaDto>>>> GetDetail(int nIdOrtodoncia)
+        public async Task<ActionResult<ApiResponse<IEnumerable<DetOrtodonciaDataResponse>>>> GetDetail([FromQuery] DetOrtodonciaQuery filter)
         {
-            var response = await _ortodonciaService.GetDetailAsync(nIdOrtodoncia);
+            var response = await _ortodonciaService.GetDetailAsync(filter);
             if (!response.Success)
             {
                 return BadRequest(response.Errors);

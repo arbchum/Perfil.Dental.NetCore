@@ -6,5 +6,6 @@
         ITratamientoRepository Tratamiento { get; }
         IAtencionRepository Atencion { get; }
         IOrtodonciaRepository Ortodoncia { get; }
+        IUtileriaRepository Utileria { get; }
     }
 }

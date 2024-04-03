@@ -20,14 +20,22 @@ namespace Perfil.Dental.NetCore.Application.Services
             var response = await _unitOfWork.Cliente.GetSearchAsync();
             return response;
         }
+
         public async Task<bool> CreateOrUpdateAync(Cliente request)
         {
             var response = await _unitOfWork.Cliente.CreateOrUpdateAync(request);
             return response;
         }
+
         public async Task<Cliente> GetOneAsync(int nIdCliente)
         {
-            var response = await _unitOfWork.Cliente.GetOneAsync(nIdCliente);
+            var response = await _unitOfWork.Cliente.GetOneAsync(nIdCliente, null);
+            return response;
+        }
+
+        public async Task<Cliente> GetOneByDocumentAsync(string sNroDocumento)
+        {
+            var response = await _unitOfWork.Cliente.GetOneAsync(null, sNroDocumento);
             return response;
         }
         public async Task<IEnumerable<Provincia>> GetUbigeoAll()
@@ -48,5 +56,6 @@ namespace Perfil.Dental.NetCore.Application.Services
                 .ToList();
             return provincias;
         }
+
     }
 }

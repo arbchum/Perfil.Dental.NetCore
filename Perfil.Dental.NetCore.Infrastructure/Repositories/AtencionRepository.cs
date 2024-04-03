@@ -22,7 +22,7 @@ namespace Perfil.Dental.NetCore.Infrastructure.Repositories
 
         public async Task<IEnumerable<AtencionDto>> GetSearchAsync()
         {
-            var sql = $"{Procedure};{(int)AtencionEnum.Search}";
+            var sql = $"{Procedure};{(int)EAtencion.Search}";
             var result = await _executers.ExecuteCommand(
             async conn => await conn.QueryAsync<AtencionDto>(sql, commandType: CommandType.StoredProcedure));
             return result;
@@ -41,7 +41,7 @@ namespace Perfil.Dental.NetCore.Infrastructure.Repositories
                 parameters.Add("sNota", request.sNota, DbType.String, ParameterDirection.Input);
                 parameters.Add("nMonto", request.nMonto, DbType.Double, ParameterDirection.Input);
                 parameters.Add("nIdAtencion", request.nIdAtencion, DbType.Int32, ParameterDirection.Output);
-                var sql1 = $"{Procedure};{(int)AtencionEnum.Create}";
+                var sql1 = $"{Procedure};{(int)EAtencion.Create}";
                 result = await conn.ExecuteAsync(sql1, parameters, commandType: CommandType.StoredProcedure, transaction: transaction);
 
                 if (request.nIdAtencion == 0)
@@ -58,7 +58,7 @@ namespace Perfil.Dental.NetCore.Infrastructure.Repositories
                         parameterTratamiento.Add("nIdTratamiento", item.nIdTratamiento, DbType.Int32, ParameterDirection.Input);
                         parameterTratamiento.Add("nCantidad", item.nCantidad, DbType.Int32, ParameterDirection.Input);
                         parameterTratamiento.Add("nPrecio", item.nPrecio, DbType.Double, ParameterDirection.Input);
-                        var sql2 = $"{Procedure};{(int)AtencionEnum.CreateDetail}";
+                        var sql2 = $"{Procedure};{(int)EAtencion.CreateDetail}";
                         await conn.ExecuteAsync(sql2, parameterTratamiento, commandType: CommandType.StoredProcedure, transaction: transaction);
                     }
                 }
@@ -70,7 +70,7 @@ namespace Perfil.Dental.NetCore.Infrastructure.Repositories
 
         public async Task<IEnumerable<AtencionHistorico>> GetHistoricalAsync(int nIdCliente)
         {
-            var sql = $"{Procedure};{(int)AtencionEnum.GetHistorical}";
+            var sql = $"{Procedure};{(int)EAtencion.GetHistorical}";
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("nIdCliente", nIdCliente, DbType.Int32, ParameterDirection.Input);
             var result = await _executers.ExecuteCommand(

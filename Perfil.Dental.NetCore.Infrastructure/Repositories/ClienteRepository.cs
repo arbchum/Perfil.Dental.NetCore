@@ -47,13 +47,14 @@ namespace Perfil.Dental.NetCore.Infrastructure.Repositories
             async conn => await conn.ExecuteAsync(sql, parameters, commandType: CommandType.StoredProcedure));
             return result > 0;
         }
-        public async Task<Cliente> GetOneAsync(int nIdCliente)
+        public async Task<Cliente> GetOneAsync(int? nIdCliente, string sNroDocumento)
         {
             var sql = $"{Procedure};{(int)ClienteEnum.GetOne}";
             var parameters = new DynamicParameters();
             parameters.Add("nIdCliente", nIdCliente, DbType.Int32, ParameterDirection.Input);
+            parameters.Add("sNroDocumento", sNroDocumento, DbType.String, ParameterDirection.Input);
             var result = await _executers.ExecuteCommand(
-            async conn => await conn.QuerySingleAsync<Cliente>(sql, parameters, commandType: CommandType.StoredProcedure));
+            async conn => await conn.QuerySingleOrDefaultAsync<Cliente>(sql, parameters, commandType: CommandType.StoredProcedure));
             return result;
         }
 

@@ -37,6 +37,13 @@ namespace Perfil.Dental.NetCore.Api.Controllers
             return response;
         }
 
+        [HttpGet("[action]/{sNroDocumento}")]
+        public async Task<Cliente> GetOneByDocument(string sNroDocumento)
+        {
+            var response = await _clienteService.GetOneByDocumentAsync(sNroDocumento);
+            return response;
+        }
+
         [HttpGet("[action]")]
         public async Task<IEnumerable<Provincia>> GetUbigeoAll()
         {

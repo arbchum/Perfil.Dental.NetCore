@@ -8,17 +8,20 @@ namespace Perfil.Dental.NetCore.Infrastructure.Repositories
             IClienteRepository clienteRepository,
             ITratamientoRepository tratamientoRepository,
             IAtencionRepository atencionRepository,
-            IOrtodonciaRepository ortodonciaRepository
+            IOrtodonciaRepository ortodonciaRepository,
+            IUtileriaRepository utileriaRepository
         )
         {
             Cliente = clienteRepository;
             Tratamiento = tratamientoRepository;
             Atencion = atencionRepository;
             Ortodoncia = ortodonciaRepository;
+            Utileria = utileriaRepository;
         }
         public IClienteRepository Cliente { get; }
         public ITratamientoRepository Tratamiento { get; }
         public IAtencionRepository Atencion { get; }
         public IOrtodonciaRepository Ortodoncia { get; }
+        public IUtileriaRepository Utileria { get; }
     }
 }

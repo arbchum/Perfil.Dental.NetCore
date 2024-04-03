@@ -1,6 +1,6 @@
 ﻿namespace Perfil.Dental.Netcore.Domain.Enums
 {
-    public enum AtencionEnum
+    public enum EAtencion
     {
         None,
         Search,
